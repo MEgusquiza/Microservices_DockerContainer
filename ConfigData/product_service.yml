@@ -1,0 +1,21 @@
+server:
+   port: 8091
+   
+#Conextion to Mongo DB
+spring:
+  application:
+    name: product_service
+  data:
+    mongodb:
+#      uri: mongodb://localhost:27017/PRODUCT
+      uri: mongodb://admin:password@mongodb-service:27017/PRODUCT
+         
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://docker-registry-service:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposre:
+        include: "*"

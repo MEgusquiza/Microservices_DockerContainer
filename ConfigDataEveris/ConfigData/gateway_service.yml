@@ -1,0 +1,32 @@
+server:
+   port: 8085
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: customer_service
+        uri: http://docker-customer-service:8090/
+        predicates:
+        - Path=/customer/**
+      - id: product_service
+        uri: http://docker-product-service:8091/
+        predicates:
+        - Path=/product/**
+      - id: transaction_service
+        uri: http://docker-transaction-service:8092/
+        predicates:
+        - Path=/transaction/** 
+    
+         
+       
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://docker-registry-service:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
